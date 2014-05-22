@@ -5,3 +5,4 @@
 [![Dependency Status](https://david-dm.org/daviddenton/autobot.png)](https://david-dm.org/daviddenton/autobot)
 [![devDependency Status](https://david-dm.org/daviddenton/autobot/dev-status.png)](https://david-dm.org/daviddenton/autobot#info=devDependencies)
 
+Example-based test-data generation.
