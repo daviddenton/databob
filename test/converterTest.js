@@ -39,6 +39,12 @@ describe('Converter', function () {
         }
     });
 
+    it('converts boolean', function () {
+        assert.equal(typeof df.generate({
+            value: converter(true)
+        }).value, 'boolean');
+    });
+
     //console.log(    df.generate(converter(['asd asd', 'sdf sdf'])()));
     //    itConverts('boolean', true, 'boolean');
 
@@ -48,7 +54,6 @@ describe('Converter', function () {
     // ALSO - OBJECTS!
     // 1. named primitives as properties
     // 2. arrays
-    // 3. sub objects
     // 4. overrides/merge
     // 5. overrides- reject value when original object does not have it. Typesafety!
 
