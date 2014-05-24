@@ -78,7 +78,6 @@ describe('Converter', function () {
     // ALSO: dates and time formats
     // ALSO: REGISTER CUSTOM CONVERTERS
     // ALSO - OBJECTS!
-    // 1. arrays
     // 2. overrides/merge
     // 3. overrides- reject value when original object does not have it. Typesafety!
 
