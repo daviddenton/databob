@@ -56,7 +56,7 @@ describe('Converter', function () {
         }, {
             aProperty: 'lorem:1'
         });
-        itConverts('complex oect', {
+        itConverts('complex', {
             subObject: {
                 aProperty: 'qwewe'
             }
