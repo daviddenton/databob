@@ -9,6 +9,9 @@ function itConverts(description, input, expected) {
     it('converts ' + description, function () {
         assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
     });
+    it('converts array of ' + description, function () {
+        assert.equal(JSON.stringify(generatedValueForInputOf([input, input])), '[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']');
+    });
 }
 
 function generatedValueForInputOf(value) {
@@ -75,10 +78,9 @@ describe('Converter', function () {
     // ALSO: dates and time formats
     // ALSO: REGISTER CUSTOM CONVERTERS
     // ALSO - OBJECTS!
-    // 1. named primitives as properties
-    // 2. arrays
-    // 4. overrides/merge
-    // 5. overrides- reject value when original object does not have it. Typesafety!
+    // 1. arrays
+    // 2. overrides/merge
+    // 3. overrides- reject value when original object does not have it. Typesafety!
 
     // ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
 });
