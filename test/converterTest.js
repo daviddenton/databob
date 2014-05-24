@@ -5,19 +5,19 @@ var converter = require('../lib/converter');
 var assert = require('chai').assert;
 var _ = require('lodash');
 
+function itConverts(description, input, expected) {
+    it('converts ' + description, function () {
+        assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
+    });
+}
+
+function generatedValueForInputOf(value) {
+    return df.generate({
+        value: converter(value)
+    }).value;
+}
+
 describe('Converter', function () {
-
-    function itConverts(description, input, expected) {
-        it('converts ' + description, function () {
-            assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
-        });
-    }
-
-    function generatedValueForInputOf(value) {
-        return df.generate({
-            value: converter(value)
-        }).value;
-    }
 
     itConverts('string with no spaces to a word', 'qwewe', 'lorem:1');
     itConverts('string with spaces to sentence with maximum words', 'qwewe qweqwe', 'lorem:1...2');
@@ -71,7 +71,6 @@ describe('Converter', function () {
     });
 
     //console.log(    df.generate(converter(['asd asd', 'sdf sdf'])()));
-    //    itConverts('boolean', true, 'boolean');
 
     // ALSO: dates and time formats
     // ALSO: REGISTER CUSTOM CONVERTERS
