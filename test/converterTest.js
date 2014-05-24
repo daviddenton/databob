@@ -51,19 +51,20 @@ describe('Converter', function () {
 
     describe('objects', function () {
         itConverts('empty', {}, {});
-        itConverts('simple', {
+
+        var primitiveContainer = {
             aProperty: 'qwewe'
-        }, {
+        };
+        var nestedContainer = {
+            subObject: primitiveContainer
+        };
+        var expectedOutputForPrimitiveContainer = {
             aProperty: 'lorem:1'
-        });
-        itConverts('complex', {
-            subObject: {
-                aProperty: 'qwewe'
-            }
-        }, {
-            subObject: {
-                aProperty: 'lorem:1'
-            }
+        };
+
+        itConverts('simple', primitiveContainer, expectedOutputForPrimitiveContainer);
+        itConverts('complex', nestedContainer, {
+            subObject: expectedOutputForPrimitiveContainer
         });
 
         it('converts boolean', function () {
