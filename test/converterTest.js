@@ -6,7 +6,7 @@ var assert = require('chai').assert;
 var _ = require('lodash');
 
 function itConverts(description, input, expected) {
-    it('converts ' + description, function () {
+    it('converts value of ' + description, function () {
         assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
     });
     it('converts array of ' + description, function () {
@@ -69,6 +69,10 @@ describe('Converter', function () {
 
         it('converts boolean', function () {
             assert.ok(typeof generatedValueForInputOf(true), 'boolean');
+        });
+
+        it('converts Date', function () {
+            assert.ok(_.isDate(generatedValueForInputOf(new Date())));
         });
 
         it('converts undefined', function () {
