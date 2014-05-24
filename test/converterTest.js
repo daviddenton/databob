@@ -8,7 +8,7 @@ describe('Converter', function () {
 
     function itConverts(description, input, expected) {
         it('converts ' + description, function () {
-            assert.equal(converter(input).toString(), expected.toString());
+            assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
         });
     }
 
@@ -23,20 +23,36 @@ describe('Converter', function () {
     itConverts('positive exact decimal to decimal with rounded positive integer as a maximum', 19.0, '1...19');
     itConverts('negative decimal to decimal with rounded negative integer as a maximum', -19.24, '-20...0:2');
     itConverts('negative exact decimal to decimal with rounded negative integer as a maximum', -19.0, '-19...0');
+    itConverts('empty object', {}, {});
+    itConverts('simple object', {
+        aProperty: 'qwewe'
+    }, {
+        aProperty: 'lorem:1'
+    });
+    itConverts('complex object', {
+        subObject: {
+            aProperty: 'qwewe'
+        }
+    }, {
+        subObject: {
+            aProperty: 'lorem:1'
+        }
+    });
 
-//console.log(    df.generate(converter(['asd asd', 'sdf sdf'])()));
-//    itConverts('boolean', true, 'boolean');
+    //console.log(    df.generate(converter(['asd asd', 'sdf sdf'])()));
+    //    itConverts('boolean', true, 'boolean');
 
-// ALSO: dates and time formats
-// ALDO: undefined, null, NaN, infinity,
-
-// ALSO: REGISTER CUSTOM CONVERTERS
-// ALSO - OBJECTS!
+    // ALSO: dates and time formats
+    // ALSO: undefined, null, NaN, infinity,
+    // ALSO: REGISTER CUSTOM CONVERTERS
+    // ALSO - OBJECTS!
     // 1. named primitives as properties
     // 2. arrays
     // 3. sub objects
+    // 4. overrides/merge
+    // 5. overrides- reject value when original object does not have it. Typesafety!
 
-// ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
+    // ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
 });
 
 //
