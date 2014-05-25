@@ -8,7 +8,7 @@ describe('Autobot', function () {
 
     var example = {
         aNumber: 1234,
-        aString: 'string'
+        aString: 'stringValue'
     };
 
     it('can generate a random instance from a full example', function () {
@@ -16,7 +16,10 @@ describe('Autobot', function () {
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
+        assert.notEqual(generated.aNumber, 1234);
+
         assert.equal(typeof generated.aString, 'string');
+        assert.notEqual(generated.aString, 'stringValue');
         assert.equal(_.size(generated), 2);
     });
 
@@ -27,7 +30,9 @@ describe('Autobot', function () {
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 666);
+
         assert.equal(typeof generated.aString, 'string');
+        assert.notEqual(generated.aString, 'stringValue');
         assert.equal(_.size(generated), 2);
     });
 
@@ -67,6 +72,7 @@ describe('Autobot', function () {
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
         assert.equal(typeof generated.aString, 'string');
+        assert.notEqual(generated.aString, 'stringValue');
         assert.equal(_.size(generated), 2);
     });
 
@@ -80,12 +86,48 @@ describe('Autobot', function () {
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 999);
         assert.equal(typeof generated.aString, 'string');
+        assert.notEqual(generated.aString, 'stringValue');
+        assert.equal(_.size(generated), 2);
+    });
+
+    it('can register a custom builder function and build by name', function () {
+        autobot.register({
+            AnObject: function() {
+                return {
+                    aString: 'randomString'
+                };
+            }
+        });
+
+        var generated = autobot.AnObject();
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.aString, 'randomString');
+        assert.equal(_.size(generated), 1);
+    });
+
+    it('can register a custom builder function and build and override by name', function () {
+        autobot.register({
+            AnObject: function() {
+                return {
+                    aNumber: 888,
+                    aString: 'randomString'
+                };
+            }
+        });
+
+        var generated = autobot.AnObject({
+            aNumber: 999
+        });
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.aString, 'randomString');
+        assert.equal(generated.aNumber, 999);
         assert.equal(_.size(generated), 2);
     });
 });
 
 // ALSO: dates and time formats
-// ALSO: REGISTER CUSTOM CONVERTERS
 
 // ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
 //
