@@ -63,7 +63,7 @@ describe('Autobot', function () {
             AnObject: example
         });
 
-        var generated = autobot.Example();
+        var generated = autobot.AnObject();
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
