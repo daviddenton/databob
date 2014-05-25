@@ -12,6 +12,9 @@ function itConverts(description, input, expected) {
     it('converts array of ' + description, function () {
         assert.equal(JSON.stringify(generatedValueForInputOf([input, input])), '[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']');
     });
+    it('converts array of array of' + description, function () {
+        assert.equal(JSON.stringify(generatedValueForInputOf([[input, input], [input, input]])), '[[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + '],[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']]');
+    });
 }
 
 function generatedValueForInputOf(value) {
@@ -22,13 +25,6 @@ function generatedValueForInputOf(value) {
 
 describe('Converter', function () {
 
-    describe('strings', function () {
-        itConverts('string with no spaces to a word', 'qwewe', 'lorem:1');
-        itConverts('string with spaces to sentence with maximum words', 'qwewe qweqwe', 'lorem:1...2');
-        itConverts('string with new lines to multi-line', 'qwewe qweqwe\nasd\nasdsad asdas', 'plorem:3');
-        itConverts('empty string to possibly empty string', '', 'lorem:0...1');
-        itConverts('GUID', 'b7d9f73b-3d9d-286c-561a-e11ffdc0a484', 'GUID');
-    });
 
     describe('numbers', function () {
         itConverts('positive number to positive integer as a maximum', 20, '1...20');
@@ -50,6 +46,15 @@ describe('Converter', function () {
     });
 
     describe('objects', function () {
+
+        it('converts empty arrays', function () {
+            assert.equal(JSON.stringify(generatedValueForInputOf([])), JSON.stringify([]));
+        });
+
+        it('converts empty nested arrays', function () {
+            assert.equal(JSON.stringify(generatedValueForInputOf([[],[]])), JSON.stringify([[],[]]));
+        });
+
         itConverts('empty', {}, {});
 
         var primitiveContainer = {

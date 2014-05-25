@@ -57,8 +57,7 @@ describe('Autobot', function () {
         assert.fail('no exception thrown');
     });
 
-
-    it('can register an example and recall by name', function () {
+    it('can register an example and build by name', function () {
         autobot.register({
             AnObject: example
         });
@@ -71,25 +70,22 @@ describe('Autobot', function () {
         assert.equal(_.size(generated), 2);
     });
 
-//
-//    autobot
-//        .register({
-//            Bob: {
-//                numberField: 1
-//            }
-//        })
-//        .register({
-//            ABean: {
-//                numberField: 1,
-//                subField: [Bob]
-//            }
-//        })
+    it('can register a concrete example and build and override by name', function () {
+        autobot.register({
+            AnObject: example
+        });
+
+        var generated = autobot.AnObject({aNumber: 999});
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.aNumber, 999);
+        assert.equal(typeof generated.aString, 'string');
+        assert.equal(_.size(generated), 2);
+    });
 });
 
 // ALSO: dates and time formats
 // ALSO: REGISTER CUSTOM CONVERTERS
-// 2. overrides/merge
-// 3. overrides- reject value when original object does not have it. Typesafety!
 
 // ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
 //
@@ -115,39 +111,4 @@ describe('Autobot', function () {
 //            }
 //        }
 //    };
-//
-//
 //});
-//
-//var Gen = {
-//    register: function (template) {}
-//};
-//
-//function User() {
-//    return {
-//        b: 2
-//    }
-//}
-//
-//function Batch(users) {
-//    return {
-//        users: users
-//    }
-//}
-//
-//Gen.register(Batch);
-//
-//var G2 = Gen.register({
-//    Job: {
-//        field1: 1,
-//        field2: 'asd',
-//        field3: 1.2,
-//        field4: true,
-//        field5: [1],
-//        field6: {
-//            field6a: 1
-//        }
-//    }
-//});
-//
-//G2.Job()
