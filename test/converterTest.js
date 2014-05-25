@@ -3,6 +3,7 @@
 var df = require('datafixture.js');
 var converter = require('../lib/converter');
 var assert = require('chai').assert;
+var moment = require('moment');
 var _ = require('lodash');
 
 function itConverts(description, input, expected) {
@@ -24,6 +25,14 @@ function generatedValueForInputOf(value) {
 }
 
 describe('Converter', function () {
+
+    describe('strings', function () {
+        itConverts('string with no spaces to a word', 'qwewe', 'lorem:1');
+        itConverts('string with spaces to sentence with maximum words', 'qwewe qweqwe', 'lorem:1...2');
+        itConverts('string with new lines to multi-line', 'qwewe qweqwe\nasd\nasdsad asdas', 'plorem:3');
+        itConverts('empty string to possibly empty string', '', 'lorem:0...1');
+        itConverts('GUID', 'b7d9f73b-3d9d-286c-561a-e11ffdc0a484', 'GUID');
+    });
 
     describe('numbers', function () {
         itConverts('positive number to positive integer as a maximum', 20, '1...20');
