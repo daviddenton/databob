@@ -1,1 +1,1 @@
-module.exports.databob = require('./lib/databob.js');
+module.exports = require('./lib/databob');
