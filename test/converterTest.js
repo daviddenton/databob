@@ -14,7 +14,10 @@ function itConverts(description, input, expected) {
         assert.equal(JSON.stringify(generatedValueForInputOf([input, input])), '[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']');
     });
     it('converts nested array of' + description, function () {
-        assert.equal(JSON.stringify(generatedValueForInputOf([[input, input], [input, input]])), '[[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + '],[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']]');
+        assert.equal(JSON.stringify(generatedValueForInputOf([
+            [input, input],
+            [input, input]
+        ])), '[[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + '],[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']]');
     });
 }
 
@@ -32,6 +35,16 @@ describe('Converter', function () {
         itConverts('string with new lines to multi-line', 'qwewe qweqwe\nasd\nasdsad asdas', 'plorem:3');
         itConverts('empty string to possibly empty string', '', 'lorem:0...1');
         itConverts('GUID', 'b7d9f73b-3d9d-286c-561a-e11ffdc0a484', 'GUID');
+
+        function itConvertsTimestampOfFormat(formatDescription) {
+            it('timestamp with a format of ' + formatDescription, function () {
+                var generated = generatedValueForInputOf(moment().format(formatDescription));
+                assert.equal(moment(generated)._f.trim(), formatDescription);
+            });
+        }
+
+        itConvertsTimestampOfFormat('YYYY-MM-DD');
+        itConvertsTimestampOfFormat('YYYY-MM-DDTHH:mm:ss');
     });
 
     describe('numbers', function () {
@@ -60,7 +73,13 @@ describe('Converter', function () {
         });
 
         it('converts empty nested arrays', function () {
-            assert.equal(JSON.stringify(generatedValueForInputOf([[],[]])), JSON.stringify([[],[]]));
+            assert.equal(JSON.stringify(generatedValueForInputOf([
+                [],
+                []
+            ])), JSON.stringify([
+                [],
+                []
+            ]));
         });
 
         itConverts('empty', {}, {});
