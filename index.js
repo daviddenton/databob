@@ -1,1 +1,1 @@
-module.exports = require('./lib/autobot.js');
+module.exports.databob = require('./lib/databob.js');

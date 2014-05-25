@@ -1,10 +1,10 @@
 'use strict';
 
-var autobot = require('../lib/autobot');
+var databob = require('../lib/databob');
 var assert = require('chai').assert;
 var _ = require('lodash');
 
-describe('Autobot', function () {
+describe('databob', function () {
 
     var example = {
         aNumber: 1234,
@@ -12,7 +12,7 @@ describe('Autobot', function () {
     };
 
     it('can generate a random instance from a full example', function () {
-        var generated = autobot.make(example);
+        var generated = databob.make(example);
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
@@ -24,7 +24,7 @@ describe('Autobot', function () {
     });
 
     it('in strict mode, can override values', function () {
-        var generated = autobot.make(example, {
+        var generated = databob.make(example, {
             aNumber: 666
         });
 
@@ -37,7 +37,7 @@ describe('Autobot', function () {
     });
 
     it('in non-strict mode, merges overridden properties when they do not exist', function () {
-        var generated = autobot.make(example, {
+        var generated = databob.make(example, {
             randomNewField: 666
         }, true);
 
@@ -54,7 +54,7 @@ describe('Autobot', function () {
         };
 
         try {
-            autobot.make(example, illegalOverrides, false);
+            databob.make(example, illegalOverrides, false);
         } catch (e) {
             assert.equal(e.message, 'Attempted to override non-existent properties in strict mode: [' + _.keys(illegalOverrides) + ']');
             return;
@@ -63,11 +63,11 @@ describe('Autobot', function () {
     });
 
     it('can register an example and build by name', function () {
-        autobot.register({
+        databob.register({
             AnObject: example
         });
 
-        var generated = autobot.AnObject();
+        var generated = databob.AnObject();
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
@@ -77,11 +77,11 @@ describe('Autobot', function () {
     });
 
     it('can register a concrete example and build and override by name', function () {
-        autobot.register({
+        databob.register({
             AnObject: example
         });
 
-        var generated = autobot.AnObject({aNumber: 999});
+        var generated = databob.AnObject({aNumber: 999});
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 999);
@@ -91,7 +91,7 @@ describe('Autobot', function () {
     });
 
     it('can register a custom builder function and build by name', function () {
-        autobot.register({
+        databob.register({
             AnObject: function() {
                 return {
                     aString: 'randomString'
@@ -99,7 +99,7 @@ describe('Autobot', function () {
             }
         });
 
-        var generated = autobot.AnObject();
+        var generated = databob.AnObject();
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aString, 'randomString');
@@ -107,7 +107,7 @@ describe('Autobot', function () {
     });
 
     it('can register a custom builder function and build and override by name', function () {
-        autobot.register({
+        databob.register({
             AnObject: function() {
                 return {
                     aNumber: 888,
@@ -116,7 +116,7 @@ describe('Autobot', function () {
             }
         });
 
-        var generated = autobot.AnObject({
+        var generated = databob.AnObject({
             aNumber: 999
         });
 
@@ -127,10 +127,6 @@ describe('Autobot', function () {
     });
 });
 
-// ALSO: dates and time formats
-
-// ALSO: CACHE AND REPLACE KNOWN FUNCTIONS (SUB OBJECTS batch -> job ETC...)
-//
 //    var template = {
 //        "#": "1...10",
 //        number: 1,
