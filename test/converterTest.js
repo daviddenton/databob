@@ -12,7 +12,7 @@ function itConverts(description, input, expected) {
     it('converts array of ' + description, function () {
         assert.equal(JSON.stringify(generatedValueForInputOf([input, input])), '[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']');
     });
-    it('converts array of array of' + description, function () {
+    it('converts nested array of' + description, function () {
         assert.equal(JSON.stringify(generatedValueForInputOf([[input, input], [input, input]])), '[[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + '],[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']]');
     });
 }
@@ -24,7 +24,6 @@ function generatedValueForInputOf(value) {
 }
 
 describe('Converter', function () {
-
 
     describe('numbers', function () {
         itConverts('positive number to positive integer as a maximum', 20, '1...20');
