@@ -4,7 +4,6 @@ var autobot = require('../lib/autobot');
 var assert = require('chai').assert;
 var _ = require('lodash');
 
-
 describe('Autobot', function () {
 
     var example = {
@@ -12,8 +11,8 @@ describe('Autobot', function () {
         aString: 'string'
     };
 
-    it('can generate a random instance from a full example', function() {
-        var generated = autobot(example);
+    it('can generate a random instance from a full example', function () {
+        var generated = autobot.make(example);
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
@@ -21,8 +20,8 @@ describe('Autobot', function () {
         assert.equal(_.size(generated), 2);
     });
 
-    it('in strict mode, can override values', function() {
-        var generated = autobot(example, {
+    it('in strict mode, can override values', function () {
+        var generated = autobot.make(example, {
             aNumber: 666
         });
 
@@ -32,8 +31,8 @@ describe('Autobot', function () {
         assert.equal(_.size(generated), 2);
     });
 
-    it('in non-strict mode, merges overridden properties when they do not exist', function() {
-        var generated = autobot(example, {
+    it('in non-strict mode, merges overridden properties when they do not exist', function () {
+        var generated = autobot.make(example, {
             randomNewField: 666
         }, true);
 
@@ -43,24 +42,49 @@ describe('Autobot', function () {
         assert.equal(_.size(generated), 3);
     });
 
-
-    it('in strict mode, throws up if overridden property does not exist', function() {
+    it('in strict mode, throws up if overridden property does not exist', function () {
         var illegalOverrides = {
             randomNewField: 'bob',
             anotherNewField: 'bob'
         };
 
         try {
-            autobot(example, illegalOverrides, false);
-        } catch(e) {
-            assert.equal(e.message, 'Attempted to override non-existent properties in strict mode: [' + _.keys(illegalOverrides)+']');
+            autobot.make(example, illegalOverrides, false);
+        } catch (e) {
+            assert.equal(e.message, 'Attempted to override non-existent properties in strict mode: [' + _.keys(illegalOverrides) + ']');
             return;
         }
         assert.fail('no exception thrown');
     });
 
-});
 
+    it('can register an example and recall by name', function () {
+        autobot.register({
+            AnObject: example
+        });
+
+        var generated = autobot.Example();
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(typeof generated.aNumber, 'number');
+        assert.equal(typeof generated.aString, 'string');
+        assert.equal(_.size(generated), 2);
+    });
+
+//
+//    autobot
+//        .register({
+//            Bob: {
+//                numberField: 1
+//            }
+//        })
+//        .register({
+//            ABean: {
+//                numberField: 1,
+//                subField: [Bob]
+//            }
+//        })
+});
 
 // ALSO: dates and time formats
 // ALSO: REGISTER CUSTOM CONVERTERS

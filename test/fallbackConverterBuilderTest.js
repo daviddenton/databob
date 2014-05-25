@@ -32,4 +32,13 @@ describe('FallbackConverterBuilder', function () {
         assert.equal(converter('input'), 'inputinput');
     });
 
+    it('can insert a pre match', function () {
+        var converter = new fcb.FallbackConverterBuilder()
+            .thenMatch(alwaysPasses, failingConverter)
+            .insertMatch(alwaysPasses, passingConverter)
+            .buildWithDefault(failingConverter);
+
+        assert.equal(converter('input'), 'inputinput');
+    });
+
 });
