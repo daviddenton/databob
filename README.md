@@ -29,6 +29,7 @@ model
 ###Installation
 Via npm, simply run: ```npm install databob```
 
+###Features
 Given an example object:
 ```javascript
 > var book = {
