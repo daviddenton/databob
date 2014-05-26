@@ -20,7 +20,7 @@ Supports generation of object trees containing all of the primitive JS types, pl
 This is useful for a number of reasons:
 - reduces need for boilerplate test-code/duplication 
 - increases resiliency of tests by enforcing explicit reliance only on important properties (rather 
-than implicit properties of a commonly build data object)
+than implicit properties of a commonly-built data object)
 - simple "cut and paste" updating of data formats (which means you only need to update the 
 example models in one place)
 - strict-mode overriding will break should the template suddenly becomes inconsistent with example 
