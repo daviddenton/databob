@@ -99,9 +99,10 @@ Register a example model under a name:
 > databob.Book();
 ```
 
-Override values of a generated instance using the same mechanism as above:
+Override (or merge extra) properties of a generated instance using the same mechanism as above:
 ```javascript
 > databob.Book({
+    name: 'Harry Potter and the English Accent'
     ibsn: '978-3-16-148410-1'
 }, true);
 ```
