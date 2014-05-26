@@ -16,15 +16,6 @@ function itConverts(description, input, expected) {
     it('converts value of ' + description, function () {
         assert.equal(JSON.stringify(converter(input)), JSON.stringify(expected));
     });
-//    it('converts array of ' + description, function () {
-//        assert.equal(JSON.stringify(converter([input, input])()), '[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']');
-//    });
-//    it('converts nested array of ' + description, function () {
-//        assert.equal(JSON.stringify(converter([
-//            [input, input],
-//            [input, input]
-//        ])()), '[[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + '],[' + JSON.stringify(expected) + ',' + JSON.stringify(expected) + ']]');
-//    });
 }
 
 describe('Converter', function () {
@@ -80,6 +71,26 @@ describe('Converter', function () {
                 [],
                 []
             ]));
+        });
+
+        it('array of values', function () {
+            var generated = generatedValueForInputOf([123, 123]);
+            assert.equal(generated.length, 2);
+            assert.equal(typeof generated[0], 'number');
+            assert.equal(typeof generated[1], 'number');
+        });
+
+        it('nested array of values', function () {
+            var generated = generatedValueForInputOf([[123, 123],[123, 123]]);
+            assert.equal(generated.length, 2);
+
+            assert.equal(generated[0].length, 2);
+            assert.equal(typeof generated[0][0], 'number');
+            assert.equal(typeof generated[0][1], 'number');
+
+            assert.equal(generated[1].length, 2);
+            assert.equal(typeof generated[1][0], 'number');
+            assert.equal(typeof generated[1][1], 'number');
         });
 
         itConverts('empty', {}, {});
