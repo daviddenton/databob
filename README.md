@@ -44,7 +44,7 @@ Given an example object:
 };
 ```
 
-Make a simple random bean from the passed model:
+Make a randomised object from the passed model:
 ```javascript
 > databob.make(book)
 {
@@ -94,7 +94,7 @@ Register a example model under a name:
 });
 ```
 
-...then recall it repeatedly under that name...
+...then recall it repeatedly under that name to generate new instances...
 ```javascript
 > databob.Book();
 ```
