@@ -6,7 +6,7 @@
 [![devDependency Status](https://david-dm.org/daviddenton/databob/dev-status.png)](https://david-dm.org/daviddenton/databob#info=devDependencies)
 
 Given an example JS object, generates random examples of JavaScript objects for usage in tests. 
-Think automatic builder objects where you only supply an example object:
+Think automatic builder objects where you only supply an example object.
 
 Supports generation of object trees containing all of the primitive JS types, plus:
 - NaN, ±Infinity, undefined, null
