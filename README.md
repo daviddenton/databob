@@ -27,7 +27,7 @@ example models in one place)
 model
 
 ###Installation
-Via npm, simply run: ```npm install zeit```
+Via npm, simply run: ```npm install databob```
 
 Given an example object:
 ```javascript
