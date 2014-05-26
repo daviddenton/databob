@@ -17,7 +17,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Databob</h1>
-        <p class="header"></p>
+        <p class="header">Random JS object generation for tests</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/daviddenton/databob/zipball/master">Download ZIP</a></li>
@@ -39,7 +39,109 @@
 <a href="https://david-dm.org/daviddenton/databob"><img src="https://david-dm.org/daviddenton/databob.png" alt="Dependency Status"></a>
 <a href="https://david-dm.org/daviddenton/databob#info=devDependencies"><img src="https://david-dm.org/daviddenton/databob/dev-status.png" alt="devDependency Status"></a></p>
 
-<p>Example-based test-data generation.</p>
+<p>Given an example JS object, generates random examples of JavaScript objects for usage in tests. 
+Think automatic builder objects where you only supply an example object:</p>
+
+<p>Supports generation of object trees containing all of the primitive JS types, plus:</p>
+
+<ul>
+<li>NaN, ±Infinity, undefined, null</li>
+<li>native Dates</li>
+<li>arrays and nested arrays</li>
+<li>child objects</li>
+<li>common timestamp formats, such as ISO8601</li>
+<li>pluggable custom formats</li>
+<li>"format safe" overriding of values</li>
+</ul><p>This is useful for a number of reasons:</p>
+
+<ul>
+<li>reduces need for boilerplate test-code/duplication </li>
+<li>increases resiliency of tests by enforcing explicit reliance only on important properties (rather 
+than implicit properties of a commonly build data object)</li>
+<li>simple "cut and paste" updating of data formats (which means you only need to update the 
+example models in one place)</li>
+<li>strict-mode overriding will break should the template suddenly becomes inconsistent with example 
+model</li>
+</ul><h3>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+
+<p>Via npm, simply run: <code>npm install databob</code></p>
+
+<p>Given an example object:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">book</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">'lord of the rings'</span><span class="p">,</span>
+    <span class="nx">pages</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mi">180</span><span class="p">,</span> <span class="s1">'elijah wood'</span><span class="p">,</span> <span class="kc">true</span><span class="p">],</span>
+    <span class="nx">author</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">'tolkien'</span><span class="p">,</span>
+        <span class="nx">dead</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></div>
+
+<p>Make a simple random bean from the passed model:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">)</span>
+<span class="p">{</span>
+     <span class="nx">name</span><span class="o">:</span> <span class="s1">'diam praesent'</span><span class="p">,</span>
+     <span class="nx">pages</span><span class="o">:</span> <span class="mi">373</span><span class="p">,</span>
+     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mi">140</span><span class="p">,</span> <span class="s1">'nunc metus'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
+     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'dictum in'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Override the values of the generated instance. By default, strict-mode is enabled so overriding non-existent values will blow up:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s1">'Harry Potter and the English Accent'</span>
+<span class="p">});</span>
+
+<span class="p">{</span>
+     <span class="nx">name</span><span class="o">:</span> <span class="s1">'Harry Potter and the English Accent'</span><span class="p">,</span>
+     <span class="nx">pages</span><span class="o">:</span> <span class="mi">146</span><span class="p">,</span>
+     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mi">432</span><span class="p">,</span> <span class="s1">'lorem ipsum'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
+     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'ullamcorper'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Merge additional the values into the generated instance:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-0'</span>
+<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+
+<span class="p">{</span>
+     <span class="nx">name</span><span class="o">:</span> <span class="s1">'orci'</span><span class="p">,</span>
+     <span class="nx">pages</span><span class="o">:</span> <span class="mi">26</span><span class="p">,</span>
+     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mi">54</span><span class="p">,</span> <span class="s1">'purus'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
+     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'elementum'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
+     <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-0'</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Register a example model under a name:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>
+    <span class="nx">Book</span><span class="o">:</span> <span class="nx">book</span>
+<span class="p">});</span>
+</pre></div>
+
+<p>...then recall it repeatedly under that name...</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span><span class="p">();</span>
+</pre></div>
+
+<p>Override values of a generated instance using the same mechanism as 1c/d</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span><span class="p">({</span>
+    <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-1'</span>
+<span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+</pre></div>
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
