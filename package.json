@@ -22,7 +22,6 @@
     "index.js",
     "LICENSE",
     "lib",
-    "test",
     "examples"
   ],
   "devDependencies": {
