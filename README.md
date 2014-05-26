@@ -99,7 +99,7 @@ Register a example model under a name:
 > databob.Book();
 ```
 
-Override values of a generated instance using the same mechanism as 1c/d
+Override values of a generated instance using the same mechanism as above:
 ```javascript
 > databob.Book({
     ibsn: '978-3-16-148410-1'
