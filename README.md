@@ -37,7 +37,7 @@ Given an example object:
     name: 'lord of the rings',
     pages: 500,
     simpleNames: false,
-    movie: [ 180, 'elijah wood', true],
+    movie: [ 180.52, 'elijah wood', true],
     author: {
         name: 'tolkien',
         dead: true
@@ -52,7 +52,7 @@ Make a randomised object from the passed model:
      name: 'diam praesent',
      pages: 373,
      simpleNames: false,
-     movie: [ 140, 'nunc metus', true ],
+     movie: [ 140.47, 'nunc metus', true ],
      author: { name: 'dictum in', dead: true }
 }
 ```
@@ -67,7 +67,7 @@ Override the values of the generated instance. By default, strict-mode is enable
      name: 'Harry Potter and the English Accent',
      pages: 146,
      simpleNames: false,
-     movie: [ 432, 'lorem ipsum', true ],
+     movie: [ 121.42, 'lorem ipsum', true ],
      author: { name: 'ullamcorper', dead: false }
 }
 ```
@@ -82,7 +82,7 @@ Merge additional the values into the generated instance:
      name: 'orci',
      pages: 26,
      simpleNames: true,
-     movie: [ 54, 'purus', true ],
+     movie: [ 54.55, 'purus', true ],
      author: { name: 'elementum', dead: false },
      ibsn: '978-3-16-148410-0'
 }
@@ -107,3 +107,17 @@ Override (or merge extra) properties of a generated instance using the same mech
     ibsn: '978-3-16-148410-1'
 }, true);
 ```
+
+###Extent of randomness
+By default, generated instances will use the following rules for random values:
+- Integers: The model value is used as a maximum
+- Doubles: The ceil() of the model value is used as a maximum, and the number of decimal places is retained
+- Strings (w/o spaces): Single words
+- Strings (w spaces): A sentence with the number of words in the model value used as a maximum
+- Strings (w newlines): Paragraph of text using the number of lines in the model value as a maximum
+- Arrays: Like-for-like element generation to an identical length of array as the model value
+
+
+###General Acks
+- [Datafixture.js](http://acatl.github.io/datafixture.js/) for random value generation
+- [Moment.js](http://momentjs.com/) for timestamp handling
