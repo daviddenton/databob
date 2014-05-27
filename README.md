@@ -13,6 +13,7 @@ Supports generation of object trees containing all of the primitive JS types, pl
 - native Dates
 - arrays and nested arrays
 - child objects
+- GUIDs
 - common timestamp formats, such as ISO8601
 - pluggable custom formats
 - "format safe" overriding of values
