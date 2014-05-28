@@ -30,9 +30,9 @@ model
 ###Installation
 Via npm, simply run: ```npm install databob```
 
-###Features
+Then instantiate a new databob with: ```var databob = require('databob')();```
 
-Instantiate a new databob with ```var databob = require('databob')();```.
+###Features
 
 Given an example object:
 ```javascript
