@@ -1,7 +1,7 @@
 'use strict';
 
 var df = require('datafixture.js');
-var converter = require('../lib/converter');
+var converter = require('../lib/modelToDataFixtureConverters');
 var assert = require('chai').assert;
 var moment = require('moment');
 var _ = require('lodash');
@@ -18,7 +18,7 @@ function itConverts(description, input, expected) {
     });
 }
 
-describe('Converter', function () {
+describe('Model to Datafixture Converters', function () {
 
     describe('strings', function () {
         itConverts('string with no spaces to a word', 'qwewe', 'lorem:1');
