@@ -1,6 +1,6 @@
 'use strict';
 
-var databob = require('../lib/databob');
+var db = require('../lib/databob');
 var assert = require('chai').assert;
 var _ = require('lodash');
 
@@ -10,6 +10,20 @@ describe('databob', function () {
         aNumber: 1234,
         aString: 'stringValue'
     };
+
+    var databob;
+
+    beforeEach(function() {
+        databob = db();
+    });
+
+    it('creates a new databob each time the library is executed', function() {
+        db().register({
+            FirstModel: 'hello'
+        });
+
+        assert.equal(db().FirstModel);
+    });
 
     it('can generate a random instance from a full example', function () {
         var generated = databob.make(example);
@@ -62,12 +76,12 @@ describe('databob', function () {
         assert.fail('no exception thrown');
     });
 
-    it('can register an example and build by name', function () {
+    it('can register an example and build an instance by name', function () {
         databob.register({
-            AnObject: example
+            AFirstObject: example
         });
 
-        var generated = databob.AnObject();
+        var generated = databob.AFirstObject();
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
@@ -78,10 +92,10 @@ describe('databob', function () {
 
     it('can register a concrete example and build and override by name', function () {
         databob.register({
-            AnObject: example
+            AConcreteOverridableObject: example
         });
 
-        var generated = databob.AnObject({aNumber: 999});
+        var generated = databob.AConcreteOverridableObject({aNumber: 999});
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 999);
@@ -92,23 +106,61 @@ describe('databob', function () {
 
     it('can register a custom builder function and build by name', function () {
         databob.register({
-            AnObject: function() {
+            ACustomBuilder: function () {
                 return {
                     aString: 'randomString'
                 };
             }
         });
 
-        var generated = databob.AnObject();
+        var generated = databob.ACustomBuilder();
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aString, 'randomString');
         assert.equal(_.size(generated), 1);
     });
 
+    it('can refer to another custom builder function in a model', function () {
+        databob.register({
+            ACustomBuilder: function () {
+                return {
+                    aString: 'randomString'
+                };
+            }
+        });
+        databob.register({
+            AReferringObject: {
+                customObject: databob.ACustomBuilder
+            }
+        });
+
+        var generated = databob.AReferringObject();
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.customObject.aString, 'randomString');
+        assert.equal(_.size(generated), 1);
+    });
+
+    it('can refer to another custom example in a model', function () {
+        databob.register({
+            AnExampleObject: example
+        });
+        databob.register({
+            YetAnotherObject: {
+                anotherSubObject: databob.AnExampleObject
+            }
+        });
+
+        var generated = databob.YetAnotherObject();
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(typeof generated.anotherSubObject.aString, 'string');
+        assert.equal(_.size(generated.anotherSubObject), 2);
+    });
+
     it('can register a custom builder function and build and override by name', function () {
         databob.register({
-            AnObject: function() {
+            AnObject: function () {
                 return {
                     aNumber: 888,
                     aString: 'randomString'

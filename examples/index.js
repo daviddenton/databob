@@ -1,6 +1,6 @@
 'use strict';
 
-var databob = require('databob');
+var databob = require('../')(); // use require('databob') IRL
 
 // 1a. Given an example object
 var book = {

@@ -31,6 +31,9 @@ model
 Via npm, simply run: ```npm install databob```
 
 ###Features
+
+Instantiate a new databob with ```var databob = require('databob')();```.
+
 Given an example object:
 ```javascript
 > var book = {
@@ -95,9 +98,18 @@ Register a example model under a name:
 });
 ```
 
-...then recall it repeatedly under that name to generate new instances...
+...then recall it repeatedly under that name to generate new instances:
 ```javascript
 > databob.Book();
+```
+
+...or use it as a part of another model:
+```javascript
+> databob.register({
+    Librarian: {
+        FavouriteBook: databob.Book
+    }
+});
 ```
 
 Override (or merge extra) properties of a generated instance using the same mechanism as above:
@@ -115,7 +127,9 @@ By default, generated instances will use the following rules for random values:
 - Strings (w/o spaces): Single words
 - Strings (w spaces): A sentence with the number of words in the model value used as a maximum
 - Strings (w newlines): Paragraph of text using the number of lines in the model value as a maximum
+- String GUIDs: 5 Strings seperated by '-'
 - Arrays: Like-for-like element generation to an identical length of array as the model value
+- Dates & Timestamps: Uses current date & time
 
 
 ###General Acks
