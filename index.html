@@ -69,6 +69,8 @@ model</li>
 
 <p>Via npm, simply run: <code>npm install databob</code></p>
 
+<p>Then instantiate a new databob with: <code>var databob = require('databob')();</code></p>
+
 <h3>
 <a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
 
@@ -136,9 +138,18 @@ model</li>
 <span class="p">});</span>
 </pre></div>
 
-<p>...then recall it repeatedly under that name to generate new instances...</p>
+<p>...then recall it repeatedly under that name to generate new instances:</p>
 
 <div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span><span class="p">();</span>
+</pre></div>
+
+<p>...or use it as a part of another model:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>
+    <span class="nx">Librarian</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">FavouriteBook</span><span class="o">:</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 </pre></div>
 
 <p>Override (or merge extra) properties of a generated instance using the same mechanism as above:</p>
@@ -160,7 +171,9 @@ model</li>
 <li>Strings (w/o spaces): Single words</li>
 <li>Strings (w spaces): A sentence with the number of words in the model value used as a maximum</li>
 <li>Strings (w newlines): Paragraph of text using the number of lines in the model value as a maximum</li>
+<li>String GUIDs: 5 Strings seperated by '-'</li>
 <li>Arrays: Like-for-like element generation to an identical length of array as the model value</li>
+<li>Dates &amp; Timestamps: Uses current date &amp; time</li>
 </ul><h3>
 <a name="general-acks" class="anchor" href="#general-acks"><span class="octicon octicon-link"></span></a>General Acks</h3>
 
