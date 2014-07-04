@@ -30,7 +30,7 @@ describe('Model to Datafixture Converters', function () {
         function itConvertsTimestampOfFormat(formatDescription) {
             it('timestamp with a format of ' + formatDescription, function () {
                 var generated = generatedValueForInputOf(moment().format(formatDescription));
-                assert.equal(moment(generated)._f.trim(), formatDescription);
+                assert.equal(generated, moment().format(formatDescription));
             });
         }
 
