@@ -77,13 +77,12 @@ Override the values of the generated instance. By default, strict-mode is enable
 
 Merge additional the values into the generated instance:
 ```javascript
-> databob.make(book, {
-    ibsn: '978-3-16-148410-0'
-}, true);
+> databob.make(book, { ibsn: '978-3-16-148410-0' }, { price: '£5' }, true);
 
 {
      name: 'orci',
      pages: 26,
+     price: '£5',
      simpleNames: true,
      movie: [ 54.55, 'purus', true ],
      author: { name: 'elementum', dead: false },

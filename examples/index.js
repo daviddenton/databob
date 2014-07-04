@@ -61,10 +61,11 @@ databob.register({
     Book: book
 });
 
-// 2b.
+// 2b. Make it...
 console.log(databob.Book());
 
-// 2c. Override values of a generated instance using the same mechanism as 1c/d
-console.log(databob.Book({
-    ibsn: '978-3-16-148410-1'
-}, true));
+// 2c. Override multiple values of a generated instance using the same mechanism as 1c/d
+console.log(databob.Book({name: 'Dangerous beasts and where to find them'}));
+
+// 2d. Merge multiple new properties
+console.log(databob.Book({ ibsn: '978-3-16-148410-1' }, { price: '£5' }, true));

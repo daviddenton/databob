@@ -178,6 +178,20 @@ describe('databob', function () {
         assert.equal(_.size(generated), 2);
     });
 
+    it('can provide multiple overrides to an object', function () {
+        databob.register({
+            AConcreteOverridableObject: example
+        });
+
+        var generated = databob.AConcreteOverridableObject({aNumber: 999}, {aString: 'boo'}, {aNumber: 666}, {aNewField: 'foo'}, true);
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.aNumber, 666);
+        assert.equal(generated.aString, 'boo');
+        assert.equal(generated.aNewField, 'foo');
+        assert.equal(_.size(generated), 3);
+    });
+
     it('custom builders generate unique instances when invoked repeatedly', function () {
         databob.register({
             AnObject: {
