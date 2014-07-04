@@ -77,12 +77,11 @@ Override the values of the generated instance. By default, strict-mode is enable
 
 Merge additional values into the generated instance:
 ```javascript
-> databob.make(book, { ibsn: '978-3-16-148410-0' }, { price: '£5' }, true);
+> databob.make(book, { ibsn: '978-3-16-148410-0' }, true);
 
 {
      name: 'orci',
      pages: 26,
-     price: '£5',
      simpleNames: true,
      movie: [ 54.55, 'purus', true ],
      author: { name: 'elementum', dead: false },
@@ -113,10 +112,7 @@ Register a example model under a name:
 
 Override (or merge extra) properties of a generated instance using the same mechanism as above:
 ```javascript
-> databob.Book({
-    name: 'Harry Potter and the English Accent'
-    ibsn: '978-3-16-148410-1'
-}, true);
+> databob.Book({ name: 'Harry Potter and the English Accent' }, { ibsn: '978-3-16-148410-1' } , true);
 ```
 
 ###Extent of randomness
