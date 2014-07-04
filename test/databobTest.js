@@ -13,11 +13,11 @@ describe('databob', function () {
 
     var databob;
 
-    beforeEach(function() {
+    beforeEach(function () {
         databob = db();
     });
 
-    it('creates a new databob each time the library is executed', function() {
+    it('creates a new databob each time the library is executed', function () {
         db().register({
             FirstModel: 'hello'
         });
@@ -176,6 +176,16 @@ describe('databob', function () {
         assert.equal(generated.aString, 'randomString');
         assert.equal(generated.aNumber, 999);
         assert.equal(_.size(generated), 2);
+    });
+
+    it('custom builders generate unique instances when invoked repeatedly', function () {
+        databob.register({
+            AnObject: {
+                aNumber: 888,
+                aString: 'randomString'
+            }
+        });
+        assert.notDeepEqual(databob.AnObject(), databob.AnObject());
     });
 });
 
