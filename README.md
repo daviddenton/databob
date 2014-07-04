@@ -75,7 +75,7 @@ Override the values of the generated instance. By default, strict-mode is enable
 }
 ```
 
-Merge additional the values into the generated instance:
+Merge additional values into the generated instance:
 ```javascript
 > databob.make(book, { ibsn: '978-3-16-148410-0' }, { price: '£5' }, true);
 
