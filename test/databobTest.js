@@ -8,7 +8,8 @@ describe('databob', function () {
 
     var example = {
         aNumber: 1234,
-        aString: 'stringValue'
+        aString: 'stringValue',
+        aBoolean: false
     };
 
     var databob;
@@ -34,7 +35,10 @@ describe('databob', function () {
 
         assert.equal(typeof generated.aString, 'string');
         assert.notEqual(generated.aString, 'stringValue');
-        assert.equal(_.size(generated), 2);
+
+        assert.equal(typeof generated.aBoolean, 'boolean');
+
+        assert.equal(_.size(generated), 3);
     });
 
     it('in strict mode, can override values', function () {
@@ -47,7 +51,27 @@ describe('databob', function () {
 
         assert.equal(typeof generated.aString, 'string');
         assert.notEqual(generated.aString, 'stringValue');
-        assert.equal(_.size(generated), 2);
+
+        assert.equal(typeof generated.aBoolean, 'boolean');
+
+        assert.equal(_.size(generated), 3);
+    });
+
+
+    it('in strict mode, can override values', function () {
+        var generated = databob.make(example, {
+            aNumber: 666
+        });
+
+        assert.equal(typeof generated, 'object');
+        assert.equal(generated.aNumber, 666);
+
+        assert.equal(typeof generated.aString, 'string');
+        assert.notEqual(generated.aString, 'stringValue');
+
+        assert.equal(typeof generated.aBoolean, 'boolean');
+
+        assert.equal(_.size(generated), 3);
     });
 
     it('in non-strict mode, merges overridden properties when they do not exist', function () {
@@ -58,7 +82,10 @@ describe('databob', function () {
         assert.equal(typeof generated, 'object');
         assert.equal(generated.randomNewField, 666);
         assert.equal(typeof generated.aString, 'string');
-        assert.equal(_.size(generated), 3);
+
+        assert.equal(typeof generated.aBoolean, 'boolean');
+
+        assert.equal(_.size(generated), 4);
     });
 
     it('in strict mode, throws up if overridden property does not exist', function () {
@@ -86,8 +113,9 @@ describe('databob', function () {
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.aNumber, 'number');
         assert.equal(typeof generated.aString, 'string');
+        assert.equal(typeof generated.aBoolean, 'boolean');
         assert.notEqual(generated.aString, 'stringValue');
-        assert.equal(_.size(generated), 2);
+        assert.equal(_.size(generated), 3);
     });
 
     it('can register a concrete example and build and override by name', function () {
@@ -100,8 +128,9 @@ describe('databob', function () {
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 999);
         assert.equal(typeof generated.aString, 'string');
+        assert.equal(typeof generated.aBoolean, 'boolean');
         assert.notEqual(generated.aString, 'stringValue');
-        assert.equal(_.size(generated), 2);
+        assert.equal(_.size(generated), 3);
     });
 
     it('can register a custom builder function and build by name', function () {
@@ -155,7 +184,7 @@ describe('databob', function () {
 
         assert.equal(typeof generated, 'object');
         assert.equal(typeof generated.anotherSubObject.aString, 'string');
-        assert.equal(_.size(generated.anotherSubObject), 2);
+        assert.equal(_.size(generated.anotherSubObject), 3);
     });
 
     it('can register a custom builder function and build and override by name', function () {
@@ -189,7 +218,7 @@ describe('databob', function () {
         assert.equal(generated.aNumber, 666);
         assert.equal(generated.aString, 'boo');
         assert.equal(generated.aNewField, 'foo');
-        assert.equal(_.size(generated), 3);
+        assert.equal(_.size(generated), 4);
     });
 
     it('custom builders generate unique instances when invoked repeatedly', function () {
