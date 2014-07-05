@@ -3,15 +3,7 @@
 var db = require('../lib/databob');
 var assert = require('chai').assert;
 var _ = require('lodash');
-
-//var originalIt = global.it;
-//var it = function(name, test) {
-//    var a = function() {
-//        console.log('TEST: ' + name);
-//        test.apply(this, arguments);
-//    };
-//    return originalIt.apply(this, [name, a]);
-//};
+//var it = require('./debugUtil')(global.it);
 
 describe('databob', function () {
 
