@@ -4,6 +4,15 @@ var db = require('../lib/databob');
 var assert = require('chai').assert;
 var _ = require('lodash');
 
+//var originalIt = global.it;
+//var it = function(name, test) {
+//    var a = function() {
+//        console.log('TEST: ' + name);
+//        test.apply(this, arguments);
+//    };
+//    return originalIt.apply(this, [name, a]);
+//};
+
 describe('databob', function () {
 
     var example = {
@@ -59,15 +68,13 @@ describe('databob', function () {
 
 
     it('in strict mode, can override values', function () {
-        var generated = databob.make(example, {
-            aNumber: 666
-        });
+        var generated = databob.make(example, { aNumber: 666 }, { aString: 'goo' });
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.aNumber, 666);
 
         assert.equal(typeof generated.aString, 'string');
-        assert.notEqual(generated.aString, 'stringValue');
+        assert.equal(generated.aString, 'goo');
 
         assert.equal(typeof generated.aBoolean, 'boolean');
 
@@ -75,13 +82,11 @@ describe('databob', function () {
     });
 
     it('in non-strict mode, merges overridden properties when they do not exist', function () {
-        var generated = databob.make(example, {
-            randomNewField: 666
-        }, true);
+        var generated = databob.make(example, { randomNewField: 666 },{ aString: 'goo' }, true);
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.randomNewField, 666);
-        assert.equal(typeof generated.aString, 'string');
+        assert.equal(generated.aString, 'goo');
 
         assert.equal(typeof generated.aBoolean, 'boolean');
 
