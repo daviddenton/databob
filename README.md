@@ -60,15 +60,13 @@ Make a randomised object from the passed model:
 }
 ```
 
-Override the values of the generated instance. By default, strict-mode is enabled so overriding non-existent values will blow up:
+Override any number of the values of the generated instance. By default, strict-mode is enabled so 
+overriding non-existent values will blow up:
 ```javascript
-> databob.make(book, {
-    name: 'Harry Potter and the English Accent'
-});
-
+> databob.make(book, { name: 'Harry Potter and the English Accent' }, { pages: 999 });
 {
      name: 'Harry Potter and the English Accent',
-     pages: 146,
+     pages: 999,
      simpleNames: false,
      movie: [ 121.42, 'lorem ipsum', true ],
      author: { name: 'ullamcorper', dead: false }

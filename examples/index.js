@@ -28,9 +28,7 @@ console.log(databob.make(book));
 
 // 1c. Override the values of the generated instance. By default, strict-mode is enabled so overriding non-existent
 // values will blow up.
-console.log(databob.make(book, {
-    name: 'Harry Potter and the English Accent'
-}));
+console.log(databob.make(book, { name: 'Harry Potter and the English Accent' }, { pages: 999 }));
 /*
  {
  name: 'Harry Potter and the English Accent',
@@ -42,9 +40,7 @@ console.log(databob.make(book, {
  */
 
 // 1d. Merge additional the values into the generated instance
-console.log(databob.make(book, {
-    ibsn: '978-3-16-148410-0'
-}, true));
+console.log(databob.make(book, { ibsn: '978-3-16-148410-0' }, true));
 /*
  {
  name: 'orci',
