@@ -27,6 +27,19 @@ describe('databob', function () {
         assert.equal(db().FirstModel);
     });
 
+    it('generates a builder for a model', function () {
+        databob.register({
+            Example: example
+        });
+
+        var generated = databob.builder.Example().withANumber(234).withAString('someNewString').withABoolean(true).build();
+        assert.deepEqual(generated, {
+            aNumber: 234,
+            aString: 'someNewString',
+            aBoolean: true
+        });
+    });
+
     it('can generate a random instance from a full example', function () {
         var generated = databob.make(example);
 
@@ -58,7 +71,6 @@ describe('databob', function () {
         assert.equal(_.size(generated), 3);
     });
 
-
     it('in strict mode, can override values', function () {
         var generated = databob.make(example, { aNumber: 666 }, { aString: 'goo' });
 
@@ -74,7 +86,7 @@ describe('databob', function () {
     });
 
     it('in non-strict mode, merges overridden properties when they do not exist', function () {
-        var generated = databob.make(example, { randomNewField: 666 },{ aString: 'goo' }, true);
+        var generated = databob.make(example, { randomNewField: 666 }, { aString: 'goo' }, true);
 
         assert.equal(typeof generated, 'object');
         assert.equal(generated.randomNewField, 666);
