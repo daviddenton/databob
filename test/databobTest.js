@@ -27,7 +27,7 @@ describe('databob', function () {
         assert.equal(db().FirstModel);
     });
 
-    it('generates a builder for a model', function () {
+    xit('generates a builder for a model', function () {
         databob.register({
             Example: example
         });
