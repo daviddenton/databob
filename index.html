@@ -1,35 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Databob by daviddenton</title>
+    <meta name="description" content="Databob : Random JS object generation for tests">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Databob</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Databob</h1>
-        <p>Random JS object generation for tests</p>
 
-        <p class="view"><a href="https://github.com/daviddenton/databob">View the Project on GitHub <small>daviddenton/databob</small></a></p>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/daviddenton/databob">View on GitHub</a>
 
+          <h1 id="project_title">Databob</h1>
+          <h2 id="project_tagline">Random JS object generation for tests</h2>
 
-        <ul>
-          <li><a href="https://github.com/daviddenton/databob/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/daviddenton/databob/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/daviddenton/databob">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/daviddenton/databob/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/daviddenton/databob/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h1>
-<a name="databob" class="anchor" href="#databob"><span class="octicon octicon-link"></span></a>databob</h1>
+<a id="databob" class="anchor" href="#databob" aria-hidden="true"><span class="octicon octicon-link"></span></a>databob</h1>
 
 <p><a href="http://badge.fury.io/js/databob"><img src="https://badge.fury.io/js/databob.svg" alt="NPM version"></a>
 <a href="https://travis-ci.org/daviddenton/databob"><img src="https://travis-ci.org/daviddenton/databob.png?branch=master" alt="Build Status"></a>
@@ -51,7 +54,9 @@ Think automatic builder objects where you only supply an example object.</p>
 <li>common timestamp formats, such as ISO8601</li>
 <li>pluggable custom formats</li>
 <li>"format safe" overriding of values</li>
-</ul><p>This is useful for a number of reasons:</p>
+</ul>
+
+<p>This is useful for a number of reasons:</p>
 
 <ul>
 <li>reduces need for boilerplate test-code/duplication </li>
@@ -61,99 +66,93 @@ than implicit properties of a commonly-built data object)</li>
 example models in one place)</li>
 <li>strict-mode overriding will break should the template suddenly becomes inconsistent with example 
 model</li>
-</ul><h3>
-<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h3>
+</ul>
+
+<h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
 
 <p>Via npm, simply run: <code>npm install databob</code></p>
 
 <p>Then instantiate a new databob with: <code>var databob = require('databob')();</code></p>
 
 <h3>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
 
 <p>Given an example object:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="kd">var</span> <span class="nx">book</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">'lord of the rings'</span><span class="p">,</span>
-    <span class="nx">pages</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
-    <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mf">180.52</span><span class="p">,</span> <span class="s1">'elijah wood'</span><span class="p">,</span> <span class="kc">true</span><span class="p">],</span>
-    <span class="nx">author</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s1">'tolkien'</span><span class="p">,</span>
-        <span class="nx">dead</span><span class="o">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-k">var</span> book <span class="pl-k">=</span> {
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>lord of the rings<span class="pl-pds">'</span></span>,
+    pages<span class="pl-k">:</span> <span class="pl-c1">500</span>,
+    simpleNames<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    movie<span class="pl-k">:</span> [ <span class="pl-c1">180.52</span>, <span class="pl-s"><span class="pl-pds">'</span>elijah wood<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span>],
+    author<span class="pl-k">:</span> {
+        name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>tolkien<span class="pl-pds">'</span></span>,
+        dead<span class="pl-k">:</span> <span class="pl-c1">true</span>
+    }
+};</pre></div>
 
 <p>Make a randomised object from the passed model:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">)</span>
-<span class="p">{</span>
-     <span class="nx">name</span><span class="o">:</span> <span class="s1">'diam praesent'</span><span class="p">,</span>
-     <span class="nx">pages</span><span class="o">:</span> <span class="mi">373</span><span class="p">,</span>
-     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mf">140.47</span><span class="p">,</span> <span class="s1">'nunc metus'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
-     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'dictum in'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">true</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book)
+{
+     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>diam praesent<span class="pl-pds">'</span></span>,
+     pages<span class="pl-k">:</span> <span class="pl-c1">373</span>,
+     simpleNames<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+     movie<span class="pl-k">:</span> [ <span class="pl-c1">140.47</span>, <span class="pl-s"><span class="pl-pds">'</span>nunc metus<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span> ],
+     author<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>dictum in<span class="pl-pds">'</span></span>, dead<span class="pl-k">:</span> <span class="pl-c1">true</span> }
+}</pre></div>
 
 <p>Override the values of the generated instance. By default, strict-mode is enabled so overriding non-existent values will blow up:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">'Harry Potter and the English Accent'</span>
-<span class="p">});</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book, {
+    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span>
+});
 
-<span class="p">{</span>
-     <span class="nx">name</span><span class="o">:</span> <span class="s1">'Harry Potter and the English Accent'</span><span class="p">,</span>
-     <span class="nx">pages</span><span class="o">:</span> <span class="mi">146</span><span class="p">,</span>
-     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
-     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mf">121.42</span><span class="p">,</span> <span class="s1">'lorem ipsum'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
-     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'ullamcorper'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">false</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
+{
+     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span>,
+     pages<span class="pl-k">:</span> <span class="pl-c1">146</span>,
+     simpleNames<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+     movie<span class="pl-k">:</span> [ <span class="pl-c1">121.42</span>, <span class="pl-s"><span class="pl-pds">'</span>lorem ipsum<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span> ],
+     author<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ullamcorper<span class="pl-pds">'</span></span>, dead<span class="pl-k">:</span> <span class="pl-c1">false</span> }
+}</pre></div>
 
 <p>Merge additional values into the generated instance:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">make</span><span class="p">(</span><span class="nx">book</span><span class="p">,</span> <span class="p">{</span> <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-0'</span> <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-0<span class="pl-pds">'</span></span> }, <span class="pl-c1">true</span>);
 
-<span class="p">{</span>
-     <span class="nx">name</span><span class="o">:</span> <span class="s1">'orci'</span><span class="p">,</span>
-     <span class="nx">pages</span><span class="o">:</span> <span class="mi">26</span><span class="p">,</span>
-     <span class="nx">simpleNames</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-     <span class="nx">movie</span><span class="o">:</span> <span class="p">[</span> <span class="mf">54.55</span><span class="p">,</span> <span class="s1">'purus'</span><span class="p">,</span> <span class="kc">true</span> <span class="p">],</span>
-     <span class="nx">author</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'elementum'</span><span class="p">,</span> <span class="nx">dead</span><span class="o">:</span> <span class="kc">false</span> <span class="p">},</span>
-     <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-0'</span>
-<span class="p">}</span>
-</pre></div>
+{
+     name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>orci<span class="pl-pds">'</span></span>,
+     pages<span class="pl-k">:</span> <span class="pl-c1">26</span>,
+     simpleNames<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+     movie<span class="pl-k">:</span> [ <span class="pl-c1">54.55</span>, <span class="pl-s"><span class="pl-pds">'</span>purus<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span> ],
+     author<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>elementum<span class="pl-pds">'</span></span>, dead<span class="pl-k">:</span> <span class="pl-c1">false</span> },
+     ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-0<span class="pl-pds">'</span></span>
+}</pre></div>
 
 <p>Register a example model under a name:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>
-    <span class="nx">Book</span><span class="o">:</span> <span class="nx">book</span>
-<span class="p">});</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.register({
+    Book<span class="pl-k">:</span> book
+});</pre></div>
 
 <p>...then recall it repeatedly under that name to generate new instances:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span><span class="p">();</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.Book();</pre></div>
 
 <p>...or use it as a part of another model:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">register</span><span class="p">({</span>
-    <span class="nx">Librarian</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">FavouriteBook</span><span class="o">:</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.register({
+    Librarian<span class="pl-k">:</span> {
+        FavouriteBook<span class="pl-k">:</span> databob.Book
+    }
+});</pre></div>
 
 <p>Override (or merge extra) properties of a generated instance using the same mechanism as above:</p>
 
-<div class="highlight highlight-javascript"><pre><span class="o">&gt;</span> <span class="nx">databob</span><span class="p">.</span><span class="nx">Book</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">'Harry Potter and the English Accent'</span> <span class="p">},</span> <span class="p">{</span> <span class="nx">ibsn</span><span class="o">:</span> <span class="s1">'978-3-16-148410-1'</span> <span class="p">}</span> <span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
-</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.Book({ name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span> }, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-1<span class="pl-pds">'</span></span> } , <span class="pl-c1">true</span>);</pre></div>
 
 <h3>
-<a name="extent-of-randomness" class="anchor" href="#extent-of-randomness"><span class="octicon octicon-link"></span></a>Extent of randomness</h3>
+<a id="extent-of-randomness" class="anchor" href="#extent-of-randomness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extent of randomness</h3>
 
 <p>By default, generated instances will use the following rules for random values:</p>
 
@@ -166,8 +165,10 @@ model</li>
 <li>String GUIDs: 5 Strings seperated by '-'</li>
 <li>Arrays: Like-for-like element generation to an identical length of array as the model value</li>
 <li>Dates &amp; Timestamps: Uses current date &amp; time</li>
-</ul><h3>
-<a name="general-acks" class="anchor" href="#general-acks"><span class="octicon octicon-link"></span></a>General Acks</h3>
+</ul>
+
+<h3>
+<a id="general-acks" class="anchor" href="#general-acks" aria-hidden="true"><span class="octicon octicon-link"></span></a>General Acks</h3>
 
 <ul>
 <li>
@@ -176,12 +177,27 @@ model</li>
 <a href="http://momentjs.com/">Moment.js</a> for timestamp handling</li>
 </ul>
       </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/daviddenton">daviddenton</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Databob maintained by <a href="https://github.com/daviddenton">daviddenton</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-69280122-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
   </body>
 </html>
