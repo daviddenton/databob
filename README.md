@@ -5,7 +5,7 @@
 [![Dependency Status](https://david-dm.org/daviddenton/databob.png)](https://david-dm.org/daviddenton/databob)
 [![devDependency Status](https://david-dm.org/daviddenton/databob/dev-status.png)](https://david-dm.org/daviddenton/databob#info=devDependencies)
 
-#####(Looking for the Scala version of Databob? See [here](https://github.com/daviddenton/databob.scala))
+##### (Also available in [Scala](https://github.com/daviddenton/databob.scala) or [Kotlin](https://github.com/daviddenton/databob.kotlin) flavours)
 
 Given an example JS object, generates random examples of JavaScript objects for usage in tests. 
 Think automatic builder objects where you only supply an example object.
