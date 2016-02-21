@@ -1,44 +1,35 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Databob : Random JS object generation for tests">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Databob</title>
+    <meta charset="UTF-8">
+    <title>Databob by daviddenton</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Databob</h1>
+      <h2 class="project-tagline">Random JS object generation for tests</h2>
+      <a href="https://github.com/daviddenton/databob" class="btn">View on GitHub</a>
+      <a href="https://github.com/daviddenton/databob/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/daviddenton/databob/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/daviddenton/databob">View on GitHub</a>
-
-          <h1 id="project_title">Databob</h1>
-          <h2 id="project_tagline">Random JS object generation for tests</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/daviddenton/databob/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/daviddenton/databob/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="databob" class="anchor" href="#databob" aria-hidden="true"><span class="octicon octicon-link"></span></a>databob</h1>
+    <section class="main-content">
+      <h1>
+<a id="databob" class="anchor" href="#databob" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>databob</h1>
 
 <p><a href="http://badge.fury.io/js/databob"><img src="https://badge.fury.io/js/databob.svg" alt="NPM version"></a>
-<a href="https://travis-ci.org/daviddenton/databob"><img src="https://travis-ci.org/daviddenton/databob.png?branch=master" alt="Build Status"></a>
-<a href="https://coveralls.io/r/daviddenton/databob"><img src="https://coveralls.io/repos/daviddenton/databob/badge.png" alt="Coverage Status"></a>
+<a href="https://travis-ci.org/daviddenton/databob"><img src="https://api.travis-ci.org/daviddenton/databob.png?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/r/daviddenton/databob?branch=master"><img src="https://coveralls.io/repos/daviddenton/databob/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="https://david-dm.org/daviddenton/databob"><img src="https://david-dm.org/daviddenton/databob.png" alt="Dependency Status"></a>
 <a href="https://david-dm.org/daviddenton/databob#info=devDependencies"><img src="https://david-dm.org/daviddenton/databob/dev-status.png" alt="devDependency Status"></a></p>
+
+<h5>
+<a id="also-available-in-scala-and-kotlin-flavours" class="anchor" href="#also-available-in-scala-and-kotlin-flavours" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>(Also available in <a href="https://github.com/daviddenton/databob.scala">Scala</a> and <a href="https://github.com/daviddenton/databob.kotlin">Kotlin</a> flavours)</h5>
 
 <p>Given an example JS object, generates random examples of JavaScript objects for usage in tests. 
 Think automatic builder objects where you only supply an example object.</p>
@@ -69,14 +60,14 @@ model</li>
 </ul>
 
 <h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h3>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
 
 <p>Via npm, simply run: <code>npm install databob</code></p>
 
 <p>Then instantiate a new databob with: <code>var databob = require('databob')();</code></p>
 
 <h3>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
 
 <p>Given an example object:</p>
 
@@ -93,7 +84,7 @@ model</li>
 
 <p>Make a randomised object from the passed model:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book)
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">make</span>(book)
 {
      name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>diam praesent<span class="pl-pds">'</span></span>,
      pages<span class="pl-k">:</span> <span class="pl-c1">373</span>,
@@ -102,15 +93,13 @@ model</li>
      author<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>dictum in<span class="pl-pds">'</span></span>, dead<span class="pl-k">:</span> <span class="pl-c1">true</span> }
 }</pre></div>
 
-<p>Override the values of the generated instance. By default, strict-mode is enabled so overriding non-existent values will blow up:</p>
+<p>Override any number of the values of the generated instance. By default, strict-mode is enabled so 
+overriding non-existent values will blow up:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book, {
-    name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span>
-});
-
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">make</span>(book, { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span> }, { pages<span class="pl-k">:</span> <span class="pl-c1">999</span> });
 {
      name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span>,
-     pages<span class="pl-k">:</span> <span class="pl-c1">146</span>,
+     pages<span class="pl-k">:</span> <span class="pl-c1">999</span>,
      simpleNames<span class="pl-k">:</span> <span class="pl-c1">false</span>,
      movie<span class="pl-k">:</span> [ <span class="pl-c1">121.42</span>, <span class="pl-s"><span class="pl-pds">'</span>lorem ipsum<span class="pl-pds">'</span></span>, <span class="pl-c1">true</span> ],
      author<span class="pl-k">:</span> { name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ullamcorper<span class="pl-pds">'</span></span>, dead<span class="pl-k">:</span> <span class="pl-c1">false</span> }
@@ -118,7 +107,7 @@ model</li>
 
 <p>Merge additional values into the generated instance:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.make(book, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-0<span class="pl-pds">'</span></span> }, <span class="pl-c1">true</span>);
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">make</span>(book, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-0<span class="pl-pds">'</span></span> }, <span class="pl-c1">true</span>);
 
 {
      name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>orci<span class="pl-pds">'</span></span>,
@@ -131,28 +120,28 @@ model</li>
 
 <p>Register a example model under a name:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.register({
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">register</span>({
     Book<span class="pl-k">:</span> book
 });</pre></div>
 
 <p>...then recall it repeatedly under that name to generate new instances:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.Book();</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">Book</span>();</pre></div>
 
 <p>...or use it as a part of another model:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.register({
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">register</span>({
     Librarian<span class="pl-k">:</span> {
-        FavouriteBook<span class="pl-k">:</span> databob.Book
+        FavouriteBook<span class="pl-k">:</span> <span class="pl-smi">databob</span>.<span class="pl-smi">Book</span>
     }
 });</pre></div>
 
 <p>Override (or merge extra) properties of a generated instance using the same mechanism as above:</p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> databob.Book({ name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span> }, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-1<span class="pl-pds">'</span></span> } , <span class="pl-c1">true</span>);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&gt;</span> <span class="pl-smi">databob</span>.<span class="pl-en">Book</span>({ name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Harry Potter and the English Accent<span class="pl-pds">'</span></span> }, { ibsn<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>978-3-16-148410-1<span class="pl-pds">'</span></span> } , <span class="pl-c1">true</span>);</pre></div>
 
 <h3>
-<a id="extent-of-randomness" class="anchor" href="#extent-of-randomness" aria-hidden="true"><span class="octicon octicon-link"></span></a>Extent of randomness</h3>
+<a id="extent-of-randomness" class="anchor" href="#extent-of-randomness" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Extent of randomness</h3>
 
 <p>By default, generated instances will use the following rules for random values:</p>
 
@@ -168,7 +157,7 @@ model</li>
 </ul>
 
 <h3>
-<a id="general-acks" class="anchor" href="#general-acks" aria-hidden="true"><span class="octicon octicon-link"></span></a>General Acks</h3>
+<a id="general-acks" class="anchor" href="#general-acks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>General Acks</h3>
 
 <ul>
 <li>
@@ -176,18 +165,16 @@ model</li>
 <li>
 <a href="http://momentjs.com/">Moment.js</a> for timestamp handling</li>
 </ul>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Databob maintained by <a href="https://github.com/daviddenton">daviddenton</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/daviddenton/databob">Databob</a> is maintained by <a href="https://github.com/daviddenton">daviddenton</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-              <script type="text/javascript">
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -197,7 +184,6 @@ model</li>
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
