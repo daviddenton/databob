@@ -1,4 +1,15 @@
 {
+  "name": "databob",
+  "version": "1.4.0",
+  "description": "Random JS object generation for tests",
+  "devDependencies": {
+    "istanbul": "^0.4.2",
+    "mocha": "^2.4.5",
+    "coveralls": "^2.11.6",
+    "mocha-lcov-reporter": "^1.1.0",
+    "chai": "^3.5.0"
+  },
+  "main": "index.js",
   "files": [
     "index.js",
     "LICENSE",
@@ -6,12 +17,12 @@
     "examples"
   ],
   "scripts": {
-    "start": "node_modules/mocha/bin/mocha -w",
-    "test": "node_modules/mocha/bin/mocha"
+    "test": "node_modules/mocha/bin/mocha",
+    "start": "node_modules/mocha/bin/mocha -w"
   },
   "repository": {
-    "url": "git://github.com/daviddenton/databob.git",
-    "type": "git"
+    "type": "git",
+    "url": "git://github.com/daviddenton/databob.git"
   },
   "author": "daviddenton",
   "keywords": [
@@ -24,19 +35,8 @@
   "license": "Apache 2.0",
   "readmeFilename": "README.md",
   "dependencies": {
-    "moment": "^2.11.2",
+    "datafixture.js": "^0.1.3",
     "lodash": "^4.5.0",
-    "datafixture.js": "^0.1.3"
-  },
-  "main": "index.js",
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha-lcov-reporter": "^1.1.0",
-    "coveralls": "^2.11.6",
-    "mocha": "^2.4.5",
-    "istanbul": "^0.4.2"
-  },
-  "description": "Random JS object generation for tests",
-  "version": "1.4.0",
-  "name": "databob"
+    "moment": "^2.11.2"
+  }
 }
